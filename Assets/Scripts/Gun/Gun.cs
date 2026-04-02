@@ -50,7 +50,7 @@ public class Gun : MonoBehaviour {
         if (Physics.Raycast(ray, out RaycastHit hit, _gunData.MaxDistance)) { 
             impactPoint = hit.point;
             // 상대가 공격 가능 대상이라면, 데미지 주기
-            if (hit.collider.TryGetComponent<IDamageable>(out var damageable)) {
+            if (hit.collider.TryGetComponent<LivingEntity>(out var damageable) && !damageable.IsDead) {
                 damageable.GetDamaged(_gunData.Damage, hit.point, hit.normal);
             }
         } 

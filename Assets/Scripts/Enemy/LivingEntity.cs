@@ -9,6 +9,10 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable {
 
     public UnityEvent OnDead;
 
+    protected virtual void Init() {
+        Init(100);
+    }
+
     protected virtual void Init(float maxHealth) {
         _maxHealth = maxHealth;
 

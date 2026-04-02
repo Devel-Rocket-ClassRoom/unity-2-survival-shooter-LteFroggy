@@ -42,7 +42,7 @@ public class EnemyController : MonoBehaviour {
     public EnemyState EnemyState { 
         get => _enemyState;
         set {
-
+            Debug.Log($"적 상태 변경 : {value}");
             _enemyState = value;
             switch (_enemyState) {
                 case EnemyState.Idle:

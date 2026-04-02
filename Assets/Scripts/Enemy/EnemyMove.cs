@@ -33,7 +33,7 @@ public class EnemyMove : MonoBehaviour {
     public void StopFollow() {
         _navMeshAgent.ResetPath();
         _navMeshAgent.isStopped = true;
-        _navMeshAgent.speed = 0f;
+        _navMeshAgent.velocity = Vector3.zero;
 
         _animator.SetBool(IsMovingHash, false);
     }

@@ -16,8 +16,8 @@ class EnemyAttack : MonoBehaviour {
         if (Time.time < _lastAttackTime + _attackInterval) { return; }
         _lastAttackTime =Time.time;
 
-        var damageAble = target.GetComponent<IDamageable>();
-        if (damageAble == null) {
+        var damageAble = target.GetComponent<LivingEntity>();
+        if (damageAble == null || damageAble.IsDead) {
             return;
         } else {
             damageAble.GetDamaged(_attackDamage, transform.position, -transform.position);
