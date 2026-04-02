@@ -16,7 +16,7 @@ MonoBehaviour:
   Damage: 20
   Speed: 4
   AngularSpeed: 720
-  RecognitionRange: 20
+  RecognitionRange: 100
   AttackRange: 1.5
   AttackInterval: 1.5
   HitClip: {fileID: 8300000, guid: 02e6208ec76314158a9f548f51fe9f11, type: 3}

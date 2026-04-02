@@ -17,11 +17,14 @@ public class EnemyMove : MonoBehaviour {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.autoBraking = false;
 
+        _navMeshAgent.Warp(transform.position);
         _navMeshAgent.speed = data.Speed;
         _navMeshAgent.angularSpeed = data.AngularSpeed;
     }
 
     public void StartFollow(Transform target) {
+        _navMeshAgent.Warp(transform.position);
+        
         _followTarget = target;
 
         _navMeshAgent.SetDestination(_followTarget.position);
