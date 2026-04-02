@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Gun : MonoBehaviour {
@@ -39,27 +40,32 @@ public class Gun : MonoBehaviour {
     }
 
     private IEnumerator CoFire() {
-        // 총알 발사 소리
+        // 총알 발사 소리 재생
         _audioSource.PlayOneShot(_gunShotClip);
+
+        // 레이캐스팅
+        Vector3 impactPoint;
+        Ray ray = new Ray(_gunBarrelEnd.transform.position, _gunBarrelEnd.transform.forward);
+        // 성공 시
+        if (Physics.Raycast(ray, out RaycastHit hit, _gunData.MaxDistance)) { 
+            impactPoint = hit.point;
+            // 상대가 공격 가능 대상이라면, 데미지 주기
+            if (hit.collider.TryGetComponent<LivingEntity>(out var damageable) && !damageable.IsDead) {
+                damageable.GetDamaged(_gunData.Damage, hit.point, hit.normal);
+            }
+        } 
+        // 실패 시
+        else { impactPoint = _gunBarrelEnd.transform.position + _gunBarrelEnd.transform.forward * _gunData.MaxDistance; }
+
         // 라인렌더러 렌더링
-        Vector3 impactPoint = GetImpactPoint(_gunBarrelEnd.transform.position, _gunBarrelEnd.transform.forward);
         _bulletTraceRenderer.SetPosition(0, _gunBarrelEnd.transform.position);
         _bulletTraceRenderer.SetPosition(1, impactPoint);
         _bulletTraceRenderer.enabled = true;
 
         yield return new WaitForSeconds(0.03f);
 
+        // 라인렌더러 렌더링 종료
         _bulletTraceRenderer.enabled = false;
         _shotCoroutine = null;
-    }
-
-    private Vector3 GetImpactPoint(Vector3 start, Vector3 direction) {
-        Ray ray = new Ray(start, direction);
-
-        if (Physics.Raycast(ray, out RaycastHit hit, _gunData.MaxDistance)) {
-            return hit.point;
-        } else {
-            return start + (direction * _gunData.MaxDistance);
-        }
     }
 }
