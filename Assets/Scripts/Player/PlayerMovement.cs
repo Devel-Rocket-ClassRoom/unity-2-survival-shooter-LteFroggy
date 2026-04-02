@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
-    private readonly int Move = Animator.StringToHash("Move");
+    private readonly int MoveHash = Animator.StringToHash("Move");
 
     private float _moveSpeed = 5f;
 
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour {
         // 대각선 움직임 조정
         move = Vector3.ClampMagnitude(move, 1f);
         
-        _animator.SetFloat(Move, move.magnitude);
+        _animator.SetFloat(MoveHash, move.magnitude);
 
         // move 기반 새 포지션 계산
         Vector3 newPosition = transform.position + (move * _moveSpeed * Time.deltaTime);
