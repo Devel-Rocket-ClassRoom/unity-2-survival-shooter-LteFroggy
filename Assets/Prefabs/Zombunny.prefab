@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 8646153748441065798}
   - component: {fileID: 6310239598409496080}
   m_Layer: 0
-  m_Name: Zombunny
+  m_Name: ZomBunny
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

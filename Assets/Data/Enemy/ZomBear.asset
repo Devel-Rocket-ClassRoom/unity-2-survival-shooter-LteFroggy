@@ -19,5 +19,5 @@ MonoBehaviour:
   RecognitionRange: 100
   AttackRange: 1.5
   AttackInterval: 1.5
-  HitClip: {fileID: 8300000, guid: 02e6208ec76314158a9f548f51fe9f11, type: 3}
+  HitClip: {fileID: 8300000, guid: 1d4840678e677424b8921716c72397ea, type: 3}
   DeadClip: {fileID: 8300000, guid: 62366b8d2c37a49dca550841c741317f, type: 3}

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,19 +13,24 @@ public class EnemyMove : MonoBehaviour {
     private float _lastTargetLocationTime = -2f;
     private float _targetRelocationInterval = 0.1f;
 
-    public void Init(EnemyData data) {
+    private void Awake() {
         _animator = GetComponent<Animator>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
+    }
+
+    public void Init(EnemyData data) {
         _navMeshAgent.autoBraking = false;
 
         _navMeshAgent.Warp(transform.position);
+        
         _navMeshAgent.speed = data.Speed;
         _navMeshAgent.angularSpeed = data.AngularSpeed;
+
+        Debug.Log(_navMeshAgent.isOnNavMesh);
+        Debug.Log(transform.position);
     }
 
     public void StartFollow(Transform target) {
-        _navMeshAgent.Warp(transform.position);
-        
         _followTarget = target;
 
         _navMeshAgent.SetDestination(_followTarget.position);

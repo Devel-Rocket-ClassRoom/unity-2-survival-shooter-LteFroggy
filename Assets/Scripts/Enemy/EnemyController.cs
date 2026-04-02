@@ -48,7 +48,6 @@ public class EnemyController : MonoBehaviour {
             switch (_enemyState) {
                 case EnemyState.Idle:
                     _target = null;
-                    _enemyMove.StopFollow();
                     break;
 
                 case EnemyState.Trace:

@@ -9,10 +9,10 @@ public class SpawnPoint : MonoBehaviour {
     private List<EnemyController> _enemyList;
     private List<EnemyController> _aliveEnemys;
 
+    private float _spawnMaxDistFromPoint = 2f;
+
     private float _spawnDelay = 2f;
     private float _lastSpawnTime;
-
-    private float _spawnMaxDistFromPoint = 10f;
 
     private void Awake() {
         _spawnPoints = new List<Transform>();
@@ -37,17 +37,15 @@ public class SpawnPoint : MonoBehaviour {
             int pointNum = Random.Range(0, _spawnPoints.Count);
             int enemyNum = Random.Range(0, _enemyList.Count);
 
-            // 생성 가능 위치 찾기
-            if (NavMesh.SamplePosition(_spawnPoints[pointNum].position, out NavMeshHit hit, _spawnMaxDistFromPoint, NavMesh.AllAreas)) {
-                // 생성
+            // 생성
+            if (NavMesh.SamplePosition(_spawnPoints[pointNum].position, out NavMeshHit hit, _spawnMaxDistFromPoint, NavMesh.AllAreas)) { 
                 var enemy = Instantiate(_enemyList[enemyNum], hit.position, Quaternion.identity);
                 // 리스트에 추가 및 이후 이벤트 기반 삭제 처리
                 _aliveEnemys.Add(enemy);
+
                 enemy.AddToOnDead(() => _aliveEnemys.Remove(enemy));
 
-                Debug.Log($"적 스폰 : 남은 적 수 : {_aliveEnemys.Count}");
-            } else {
-                continue;
+                Debug.Log($"SpawnPoint적 스폰 : 남은 적 수 : {_aliveEnemys.Count}");
             }
         }
     }
