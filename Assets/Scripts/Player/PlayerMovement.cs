@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour {
                        Vector3.forward * _inputManager.Vertical;
 
         // 대각선 움직임 조정
-        move.Normalize();
+        move = Vector3.ClampMagnitude(move, 1f);
 
         // move 기반 새 포지션 계산
         Vector3 newPosition = transform.position + (move * _moveSpeed * Time.deltaTime);
