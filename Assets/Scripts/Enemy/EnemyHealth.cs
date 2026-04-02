@@ -25,6 +25,7 @@ public class EnemyHealth : LivingEntity {
 
         _hitClip = enemyData.HitClip;
         _deadClip = enemyData.DeadClip;
+        OnDead.AddListener(() => GameObject.FindWithTag(Tags.GameController).GetComponent<GameController>().AddScore(enemyData.Score));
     }
         
     public override void GetDamaged(float amount, Vector3 point, Vector3 normal) {

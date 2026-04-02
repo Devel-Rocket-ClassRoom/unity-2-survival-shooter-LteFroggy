@@ -37,12 +37,12 @@ public class SpawnPoint : MonoBehaviour {
             int pointNum = Random.Range(0, _spawnPoints.Count);
             int enemyNum = Random.Range(0, _enemyList.Count);
 
-            // 생성
             if (NavMesh.SamplePosition(_spawnPoints[pointNum].position, out NavMeshHit hit, _spawnMaxDistFromPoint, NavMesh.AllAreas)) { 
+                // 생성
                 var enemy = Instantiate(_enemyList[enemyNum], hit.position, Quaternion.identity);
+
                 // 리스트에 추가 및 이후 이벤트 기반 삭제 처리
                 _aliveEnemys.Add(enemy);
-
                 enemy.AddToOnDead(() => _aliveEnemys.Remove(enemy));
 
                 Debug.Log($"SpawnPoint적 스폰 : 남은 적 수 : {_aliveEnemys.Count}");

@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   Health: 500
   Damage: 50
-  Speed: 3
-  AngularSpeed: 720
-  RecognitionRange: 100
   AttackRange: 3
   AttackInterval: 1.5
+  RecognitionRange: 100
+  Speed: 3
+  AngularSpeed: 720
+  Score: 50
   HitClip: {fileID: 8300000, guid: fce027b40770a44298a6f5a4233bfb04, type: 3}
   DeadClip: {fileID: 8300000, guid: 8c615fd0429f34edf85539d70279360d, type: 3}
