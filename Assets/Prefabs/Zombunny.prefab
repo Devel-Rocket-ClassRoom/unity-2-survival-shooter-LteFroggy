@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 8646153748441065798}
   - component: {fileID: 6310239598409496080}
   m_Layer: 0
-  m_Name: Zombunny
+  m_Name: ZomBunny
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806396133945380781}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.9584546, y: 0.07136747, z: 2.097614}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

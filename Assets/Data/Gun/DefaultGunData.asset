@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: DefaultGunData
   m_EditorClassIdentifier: Assembly-CSharp::GunData
   Damage: 20
-  ShotInterval: 0.05
+  ShotInterval: 0.1
+  MaxDistance: 50
   MagAmmo: 30
   InitialAmmo: 360
   MaximumAmmo: 999

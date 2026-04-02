@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyController : MonoBehaviour {
     [SerializeField]
@@ -23,31 +24,30 @@ public class EnemyController : MonoBehaviour {
         _enemyMove = GetComponent<EnemyMove>();
         _enemySensor = GetComponent<EnemySensor>();
         _enemyAttack = GetComponent<EnemyAttack>();
-
         _boxCollider = GetComponent<BoxCollider>();
-        
-        Init(_enemyData);
-
-        _enemyHealth.OnDead.AddListener(SetStateToDead);
     }
 
-    public void Init(EnemyData data) {
-        _enemyHealth.Init(data);
-        _enemyMove.Init(data);
-        _enemySensor.Init(data);
-        _enemyAttack.Init(data);
+    public void Init() {
+        _enemyHealth.Init(_enemyData);
+        _enemyMove.Init(_enemyData);
+        _enemySensor.Init(_enemyData);
+        _enemyAttack.Init(_enemyData);
+    }
+
+    private void Start() {
+        Init();
+        _enemyHealth.OnDead.AddListener(SetStateToDead);
+        EnemyState = EnemyState.Idle;
     }
 
     /// 상태머신 변경 시
     public EnemyState EnemyState { 
         get => _enemyState;
         set {
-            Debug.Log($"적 상태 변경 : {value}");
             _enemyState = value;
             switch (_enemyState) {
                 case EnemyState.Idle:
                     _target = null;
-                    _enemyMove.StopFollow();
                     break;
 
                 case EnemyState.Trace:
@@ -135,5 +135,9 @@ public class EnemyController : MonoBehaviour {
 
     public void SetStateToDead() {
         EnemyState = EnemyState.Dead;
+    }
+
+    public void AddToOnDead(UnityAction action) {
+        _enemyHealth.OnDead.AddListener(action);
     }
 }
