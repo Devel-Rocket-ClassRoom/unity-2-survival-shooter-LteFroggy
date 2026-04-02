@@ -637,6 +637,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _healthBarImage: {fileID: 3671864727156789781}
+  _healthBarRoot: {fileID: 7137003175852102097}
 --- !u!114 &4327751053845813214
 MonoBehaviour:
   m_ObjectHideFlags: 0
