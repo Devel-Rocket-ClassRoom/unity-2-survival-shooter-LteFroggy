@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour {
     private EnemyAttack _enemyAttack;
 
     private BoxCollider _boxCollider;
+
+    public UnityEvent<float> OnVolumeChanged;
     
     private bool _isSinking = false;
     private float _sinkingSpeed = 0.5f;
@@ -139,5 +141,9 @@ public class EnemyController : MonoBehaviour {
 
     public void AddToOnDead(UnityAction action) {
         _enemyHealth.OnDead.AddListener(action);
+    }
+
+    public void SetEffectVolume(float value) {
+        OnVolumeChanged?.Invoke(value);
     }
 }

@@ -14,7 +14,10 @@ public class SpawnPoint : MonoBehaviour {
     private float _spawnDelay = 2f;
     private float _lastSpawnTime;
 
+    private MenuUI _menuUI;
+
     private void Awake() {
+        _menuUI = GameObject.FindWithTag(Tags.Menu).GetComponent<MenuUI>();
         _spawnPoints = new List<Transform>();
         _aliveEnemys = new List<EnemyController>();
 
@@ -44,6 +47,10 @@ public class SpawnPoint : MonoBehaviour {
                 // 리스트에 추가 및 이후 이벤트 기반 삭제 처리
                 _aliveEnemys.Add(enemy);
                 enemy.AddToOnDead(() => _aliveEnemys.Remove(enemy));
+
+                // 볼륨 변경 처리 및 이벤트 기반 삭제 처리
+                _menuUI.OnEffectVolumeChange.AddListener(enemy.SetEffectVolume);
+                enemy.AddToOnDead(() => _menuUI.OnEffectVolumeChange.RemoveListener(enemy.SetEffectVolume));
 
                 Debug.Log($"SpawnPoint적 스폰 : 남은 적 수 : {_aliveEnemys.Count}");
             }

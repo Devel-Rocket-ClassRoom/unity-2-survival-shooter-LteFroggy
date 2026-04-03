@@ -23,6 +23,9 @@ public class EnemyHealth : LivingEntity {
         _audioSource = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
 
+        // Controller쪽에 볼륨 값 변경 이벤트 추가
+        GetComponent<EnemyController>().OnVolumeChanged.AddListener(ChangeVolume);
+
         _hitClip = enemyData.HitClip;
         _deadClip = enemyData.DeadClip;
         OnDead.AddListener(() => GameObject.FindWithTag(Tags.GameController).GetComponent<GameController>().AddScore(enemyData.Score));
@@ -60,5 +63,9 @@ public class EnemyHealth : LivingEntity {
         yield return new WaitForSeconds(_deadBodyExistTime);
 
         Destroy(gameObject);
+    }
+
+    private void ChangeVolume(float value) {
+        _audioSource.volume = value;
     }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-class PlayerShooter : MonoBehaviour{
+class PlayerShooter : MonoBehaviour {
     private PlayerInputManager _playerInputManager;
     private Gun _playerGun;
 

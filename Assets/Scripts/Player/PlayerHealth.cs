@@ -21,8 +21,6 @@ class PlayerHelath : LivingEntity {
     public override void GetDamaged(float amount, Vector3 point, Vector3 normal) {
         base.GetDamaged(amount, point, normal);
 
-        // UI 추가
-
         Debug.Log($"플레이어 히트, 남은 체력 : {Health}");
         
         // 히트 사운드
